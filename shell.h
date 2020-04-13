@@ -9,7 +9,6 @@
     #include <string.h>
 
     /* shell.c */
-    void shell_cicle(void);
     char *shell_read(void);
     char **shell_split(char *line);
     int shell_execute(char **args);
