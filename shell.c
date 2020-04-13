@@ -21,12 +21,29 @@ void shell_cicle(void)
 {
 	char *line;
 	char **args;
+	char *shell_exit = "exit";
 	int status;
 
 	do {
-		_printString("#Cisfun$ ");
-		line = shell_read();		  /* Read the line */
-		args = shell_split(line);	  /* Split the line on arguments */
+
+		_printString("~> ");
+
+		line = shell_read(); /* Read the line */
+
+		if ((_strcmp(line, "\n")) == 0) /* Validate if the command was a jump line */
+		{
+			continue;
+		}
+
+		args = shell_split(line); /* Split the line on arguments */
+
+		/* Validate if the command was "exit" */
+		if ((_strcmp(shell_exit, args[0])) == 0)
+		{
+			free(line);
+			exit(0);
+		}
+
 		status = shell_execute(args); /* Execute the arguments*/
 
 		free(line);
@@ -41,20 +58,25 @@ void shell_cicle(void)
  */
 char *shell_read(void)
 {
-	char *line;
+	char *str;
 	size_t len = 0;
 	int status;
 
-	status = getline(&line, &len, stdin);
+	status = getline(&str, &len, stdin);
 
-	if (status == -1)
+	if (status == EOF)
 	{
-		exit(EXIT_FAILURE);
+		if (isatty(STDIN_FILENO))
+		{
+			_putchar('\n');
+		}
+		free(str);
+		exit(0);
 	}
-	return (line);
+	return (str);
 }
 
-/*
+/**
  * shell_split - Split the line on arguments
  * @line: argument to divide.
  *
@@ -93,11 +115,10 @@ char **shell_split(char *line)
 		token = strtok(NULL, "\t\r\n\a");
 	}
 	tokens[i] = NULL;
-
 	return (tokens);
 }
 
-/*
+/**
  * shell_execute - Execute the arguments
  * @args: argument to divide
  *
@@ -119,7 +140,7 @@ int shell_execute(char **args)
 	}
 	else if (pid < 0)
 	{
-		return (EXIT_FAILURE);
+		exit(1);
 	}
 	else
 	{
