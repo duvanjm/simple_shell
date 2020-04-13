@@ -20,17 +20,17 @@ The simple shell is an application that reads lines from either a file or theter
 
 # Examples
 
-duvanjm@duvan-asus:~/holberton/simple_shell$ ./hsh
+`duvanjm@duvan-asus:~/holberton/simple_shell$ ./hsh
 #Cisfun$ ls
 Error: No such file or directory
 #Cisfun$ /bin/ls
 LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h
 #Cisfun$ ^C
-duvanjm@duvan-asus:~/holberton/simple_shell$
+duvanjm@duvan-asus:~/holberton/simple_shell$`
 
-duvanjm@duvan-asus:~/holberton/simple_shell$ echo "/bin/ls" | ./hsh
+`duvanjm@duvan-asus:~/holberton/simple_shell$ echo "/bin/ls" | ./hsh
 #Cisfun$ LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h
-duvanjm@duvan-asus:~/holberton/simple_shell$
+duvanjm@duvan-asus:~/holberton/simple_shell$`
 
 # Authors
 Juan Felipe Rodriguez & Duvan Jaramillo.
