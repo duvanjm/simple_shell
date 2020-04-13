@@ -1,0 +1,63 @@
+.TH man 1 "17 April 2020" "HOLBERTON SCHOOL" "SIMPLE_SHELL"
+.SH NAME
+.B simple_shell
+-a simple UNIX command interpreter.
+.SH SYNOPSIS
+.B #include "shell.h"
+.sp
+.B int hsh(void)
+.SH DESCRIPTION
+.B Overview
+.sp
+The simple shell is an application that reads lines from either a file or the
+terminal, interprets them, and executes them. Users can interactively type directly
+to the
+running shell or pipe in shell scripts.
+.sp
+.B Invocation
+.sp
+If no args are present and if the standard input of the shell is connected to a
+terminal, the shell is considered an interactive shell.  An interactive shell prompts
+before each command and handles programming and command errors differently.
+.sp
+.B Builtins
+.sp
+This section lists the builtin commands which are builtin because they need to perform
+some operation that can't be performed by a separate process.
+.sp
+.IP "-exit [status]"
+.sp
+Terminate the shell process. If status is given, it is used as the exit status of
+the shell; otherwise the exit status of the preceding command is used.
+.sp
+.SH EXIT STATUS
+.sp
+Errors that are detected by the shell, such as a syntax error, will cause the shell to
+exit with a non-zero exit status. Otherwise the shell will return the exit status of
+the last command executed, or if the exit builtin is used with a numeric argument,
+it will return the argument.
+.simple_shell
+.SH EXAMPLES
+.sp
+duvanjm@duvan-asus:~/holberton/simple_shell$ ./hsh
+#Cisfun$ ls
+Error: No such file or directory
+#Cisfun$ /bin/ls
+LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h
+#Cisfun$ ^C
+duvanjm@duvan-asus:~/holberton/simple_shell$
+.sp
+duvanjm@duvan-asus:~/holberton/simple_shell$ echo "/bin/ls" | ./hsh
+#Cisfun$ LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h
+duvanjm@duvan-asus:~/holberton/simple_shell$
+.sp
+.SH FILES
+.SH BUGS
+.ip Expansions only work once per stdin read
+.SH AUTHOR
+Juan Felipe Rodriguez & Duvan Jaramillo 
+.SH SEE ALSO
+.SH SEE ALSO
+.I man or help sh
+.TP
+.BR sh (1)
