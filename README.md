@@ -11,8 +11,8 @@ simple_shell is designed to run in the `Ubuntu 14.04.5 LTS` linux environment an
 
    - Compile: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
    - Run the shell in interactive mode: `./hsh`
-   - Or run the shell in non-interactive mode:
-   - example `echo "pwd" | ./hsh`
+   - Run the shell in non-interactive mode:
+   - Example `echo "pwd" | ./hsh`
 
 # Usage
 
@@ -20,17 +20,17 @@ The simple shell is an application that reads lines from either a file or theter
 
 # Examples
 
-`+duvanjm@duvan-asus:~/holberton/simple_shell$ ./hsh`
-`+#Cisfun$ ls`
-`+Error: No such file or directory`
-`+#Cisfun$ /bin/ls`
-`+LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h`
-`+#Cisfun$ ^C`
-`+duvanjm@duvan-asus:~/holberton/simple_shell$`
+`#duvanjm@duvan-asus:~/holberton/simple_shell$ ./hsh`
+`##Cisfun$ ls`
+`#Error: No such file or directory`
+`##Cisfun$ /bin/ls`
+`#LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h`
+`##Cisfun$ ^C`
+`#duvanjm@duvan-asus:~/holberton/simple_shell$`
 
-`+duvanjm@duvan-asus:~/holberton/simple_shell$ echo "/bin/ls" | ./hsh`
-`+#Cisfun$ LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h`
-`+duvanjm@duvan-asus:~/holberton/simple_shell$`
+`#duvanjm@duvan-asus:~/holberton/simple_shell$ echo "/bin/ls" | ./hsh`
+`##Cisfun$ LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h`
+`#duvanjm@duvan-asus:~/holberton/simple_shell$`
 
 # Authors
 Juan Felipe Rodriguez & Duvan Jaramillo.
