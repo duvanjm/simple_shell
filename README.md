@@ -1,14 +1,36 @@
-0x16. C - Simple Shell
- Foundations - Low-level programming & Algorithm ― Linux and Unix system programming
+# Description
+The simple shell is an application that reads lines from either a file or theterminal, interprets them, and executes them. This shell includes the basic functionality of a traditional Unix-like command line user interface. 
+Standard functions and system calls employed in simple_shell include:
+   `access, execve, exit, fork, free, getline, malloc, perror, signal, stat, wait, write.`
 
- by Julien Barbier, co-founder at Holberton School
+# Requirements
 
- Project to be done in teams of 2 people (your team: Duvan Jaramillo, Juan Felipe Rodriguez
+simple_shell is designed to run in the `Ubuntu 14.04.5 LTS` linux environment and to be compiled using the GNU compiler collection v. `gcc 4.8.4` with flags`-Wall, -Werror, -Wextra, and -pedantic.`
 
- Ongoing project - started 04-01-2020, must end by 04-17-2020 (in 9 days) - you're done with 0% of tasks.
+# Installation
 
- Checker will be released at 04-15-2020 05:16 PM
+   - Compile: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
+   - Run the shell in interactive mode: `./hsh`
+   - Or run the shell in non-interactive mode:
+   - example `echo "pwd" | ./hsh`
 
- Manual QA review must be done (request it when you are done with the project)
+# Usage
 
- QA review fully automated.
+The simple shell is an application that reads lines from either a file or theterminal, interprets them, and executes them. In a similar manner to sh, however with more limited functionality. 
+
+# Examples
+
+duvanjm@duvan-asus:~/holberton/simple_shell$ ./hsh
+#Cisfun$ ls
+Error: No such file or directory
+#Cisfun$ /bin/ls
+LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h
+#Cisfun$ ^C
+duvanjm@duvan-asus:~/holberton/simple_shell$
+
+duvanjm@duvan-asus:~/holberton/simple_shell$ echo "/bin/ls" | ./hsh
+#Cisfun$ LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h
+duvanjm@duvan-asus:~/holberton/simple_shell$
+
+# Authors
+Juan Felipe Rodriguez & Duvan Jaramillo.
