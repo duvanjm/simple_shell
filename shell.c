@@ -8,17 +8,6 @@
  */
 int main(/*int ac, char const **av*/ void)
 {
-	shell_cicle(); /* Principal loop */
-
-	return (0);
-}
-/**
- * shell_cicle - Simple Shell principal loop, read, split and execute.
- *
- * Return: Void.
- */
-void shell_cicle(void)
-{
 	char *line;
 	char **args;
 	char *shell_exit = "exit";
@@ -41,7 +30,7 @@ void shell_cicle(void)
 		if ((_strcmp(shell_exit, args[0])) == 0)
 		{
 			free(line);
-			exit(0);
+			exit(EXIT_SUCCESS);
 		}
 
 		status = shell_execute(args); /* Execute the arguments*/
@@ -49,8 +38,9 @@ void shell_cicle(void)
 		free(line);
 		free(args);
 	} while (status);
-}
 
+	return (status == 0 ? 0 : status);
+}
 /**
  * shell_read - Read the line of the standard input
  *
@@ -58,7 +48,7 @@ void shell_cicle(void)
  */
 char *shell_read(void)
 {
-	char *str;
+	char *str = NULL;
 	size_t len = 0;
 	int status;
 
@@ -71,7 +61,7 @@ char *shell_read(void)
 			_putchar('\n');
 		}
 		free(str);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 	return (str);
 }
@@ -108,10 +98,10 @@ char **shell_split(char *line)
 
 			if (!tokens)
 			{
+				perror("Error");
 				exit(EXIT_FAILURE);
 			}
 		}
-
 		token = strtok(NULL, "\t\r\n\a");
 	}
 	tokens[i] = NULL;
@@ -136,11 +126,12 @@ int shell_execute(char **args)
 		if (execve(args[0], args, NULL) == -1)
 		{
 			perror("Error");
+			exit(EXIT_FAILURE);
 		}
 	}
 	else if (pid < 0)
 	{
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
