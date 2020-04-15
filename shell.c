@@ -98,6 +98,7 @@ char **shell_split(char *line)
 
 			if (!tokens)
 			{
+				free(tokens);
 				perror("Error");
 				exit(1);
 			}
