@@ -19,4 +19,7 @@
 	void _printString(char *str);
 	int _strcmp(char *s1, char *s2);
 
+	/* _calloc.c */
+	char *_memset(char *s, char b, unsigned int n);
+	void *_calloc(unsigned int nmemb, unsigned int len);
 #endif
