@@ -15,7 +15,7 @@ int main(/*int ac, char const **av*/ void)
 
 	do {
 
-		_printString("~> ");
+		_printString("#Cisfun$ ");
 
 		line = shell_read(); /* Read the line */
 
@@ -30,7 +30,7 @@ int main(/*int ac, char const **av*/ void)
 		if ((_strcmp(shell_exit, args[0])) == 0)
 		{
 			free(line);
-			exit(EXIT_SUCCESS);
+			exit(0);
 		}
 
 		status = shell_execute(args); /* Execute the arguments*/
@@ -39,7 +39,7 @@ int main(/*int ac, char const **av*/ void)
 		free(args);
 	} while (status);
 
-	return (status == 0 ? 0 : status);
+	return (status == 0 ? 0 : 1);
 }
 /**
  * shell_read - Read the line of the standard input
@@ -61,7 +61,7 @@ char *shell_read(void)
 			_putchar('\n');
 		}
 		free(str);
-		exit(EXIT_SUCCESS);
+		exit(0);
 	}
 	return (str);
 }
@@ -82,7 +82,7 @@ char **shell_split(char *line)
 	if (!tokens)
 	{
 		perror("Error");
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 
 	token = strtok(line, "\t\r\n\a");
@@ -99,7 +99,7 @@ char **shell_split(char *line)
 			if (!tokens)
 			{
 				perror("Error");
-				exit(EXIT_FAILURE);
+				exit(1);
 			}
 		}
 		token = strtok(NULL, "\t\r\n\a");
@@ -126,12 +126,12 @@ int shell_execute(char **args)
 		if (execve(args[0], args, NULL) == -1)
 		{
 			perror("Error");
-			exit(EXIT_FAILURE);
+			exit(1);
 		}
 	}
 	else if (pid < 0)
 	{
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 	else
 	{
