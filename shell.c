@@ -19,7 +19,7 @@ int main(/*int ac, char const **av*/ void)
 
 		line = shell_read(); /* Read the line */
 
-		if ((_strcmp(line, "\n")) == 0) /* Validate if the command was a jump line */
+		if (*line == '\n') /* Validate if the command was a jump line */
 		{
 			continue;
 		}
@@ -79,12 +79,6 @@ char **shell_split(char *line)
 	char *token;
 	char **tokens = malloc(sizeof(char) * buffSize);
 
-	if (!tokens)
-	{
-		perror("Error");
-		exit(1);
-	}
-
 	token = strtok(line, "\t\r\n\a");
 
 	while (token)
@@ -126,12 +120,13 @@ int shell_execute(char **args)
 	{
 		if (execve(args[0], args, NULL) == -1)
 		{
-			perror("Error");
+			perror(args[0]);
 			exit(1);
 		}
 	}
 	else if (pid < 0)
 	{
+		perror("fork");
 		exit(1);
 	}
 	else
