@@ -35,13 +35,13 @@ int _strlen(char *s)
   */
 void _printString(char *str)
 {
-		int i = 0;
+	int i = 0;
 
-		while (str[i] != '\0')
-		{
-			_putchar(str[i]);
-			i++;
-		}
+	while (str[i] != '\0')
+	{
+		_putchar(str[i]);
+		i++;
+	}
 }
 /**
    * _strcmp - check the code for Holberton School students.
@@ -53,7 +53,7 @@ int _strcmp(char *s1, char *s2)
 {
 	int i = 0, j = 0;
 
-	for (i = 0; s1[i] != '\0' || s2[i] != '\0' ; i++)
+	for (i = 0; s1[i] != '\0' || s2[i] != '\0'; i++)
 	{
 		if (s1[i] != s2[i])
 		{
@@ -63,4 +63,32 @@ int _strcmp(char *s1, char *s2)
 	}
 
 	return (0);
+}
+
+/**
+ * _strdup - duplicate a string
+ * @str: string to be copied
+ * Return: copied string
+ */
+char *_strdup(char *str)
+{
+	int i, len;
+	char *str2;
+
+	if (!str)
+		return (NULL);
+
+	len = _strlen(str);
+	str2 = malloc(sizeof(char) * len + 1);
+
+	if (!str2)
+	{
+		perror("Malloc failed\n");
+		exit(98);
+	}
+	for (i = 0; i < len; i++)
+		str2[i] = str[i];
+
+	str2[i] = 0;
+	return (str2);
 }

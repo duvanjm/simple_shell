@@ -1,144 +1,67 @@
 #include "shell.h"
+extern char **environ;
 /**
- * main - Simple Shell
- * @: Number of arguments
- * @: Valor of the arguments.
- *
- * Return: 0 if success, 1 if fail.
- */
-int main(/*int ac, char const **av*/ void)
-{
-	char *line;
-	char **args;
-	char *shell_exit = "exit";
-	int status;
-
-	do {
-
-		_printString("#Cisfun$ ");
-
-		line = shell_read(); /* Read the line */
-
-		if ((_strcmp(line, "\n")) == 0) /* Validate if the command was a jump line */
-		{
-			continue;
-		}
-
-		args = shell_split(line); /* Split the line on arguments */
-
-		/* Validate if the command was "exit" */
-		if ((_strcmp(shell_exit, args[0])) == 0)
-		{
-			free(line);
-			exit(0);
-		}
-
-		status = shell_execute(args); /* Execute the arguments*/
-
-		free(line);
-		free(args);
-	} while (status);
-
-	return (status == 0 ? 0 : 1);
-}
-/**
- * shell_read - Read the line of the standard input
- *
- * Return: argument of stdin.
- */
-char *shell_read(void)
-{
-	char *str = NULL;
-	size_t len = 0;
-	int status;
-
-	status = getline(&str, &len, stdin);
-
-	if (status == EOF)
-	{
-		if (isatty(STDIN_FILENO))
-		{
-			_putchar('\n');
-		}
-		free(str);
-		exit(0);
-	}
-	return (str);
-}
-
-/**
- * shell_split - Split the line on arguments
- * @line: argument to divide.
+ * split - Split the line on arguments
+ * @buf: argument to divide.
  *
  * Return: divided arguments
  */
-char **shell_split(char *line)
+char **split(char *buf)
 {
-	int buffSize = 1024;
-	int i = 0;
-	char *token;
-	char **tokens = malloc(sizeof(char) * buffSize);
+        char *command, *aux, *token, **arg;
+        int i;
 
-	if (!tokens)
-	{
-		perror("Error");
-		exit(1);
-	}
+        command = _strdup(buf);
+        aux = _strdup(buf);
 
-	token = strtok(line, "\t\r\n\a");
+        while (token != NULL)
+        {
+                i++;
+                token = strtok(NULL, " \n");
+        }
+        arg = malloc(sizeof(char *) * (i + 1));
+        for (i = 0, token = strtok(aux, " \n"); token; i++)
+                arg[i] = _strdup(token), token = strtok(NULL, " \n");
+        arg[i] = NULL;
+        free(command);
+        free(aux);
 
-	while (token)
-	{
-		tokens[i] = token;
-		i++;
-
-		if (i >= buffSize)
-		{
-			tokens = realloc(tokens, buffSize * sizeof(char *));
-
-			if (!tokens)
-			{
-				free(tokens);
-				perror("Error");
-				exit(1);
-			}
-		}
-		token = strtok(NULL, "\t\r\n\a");
-	}
-	tokens[i] = NULL;
-	return (tokens);
+        return (arg);
 }
 
 /**
- * shell_execute - Execute the arguments
- * @args: argument to divide
- *
- * Return: divided arguments.
+ * main - Simple Shell
+ * Return: void
  */
-int shell_execute(char **args)
+int main(void)
 {
-	pid_t pid;
-	int status;
+        char *buffer, **arg;
+        unsigned long int len, i;
+        int line;
+        pid_t pid;
+        struct stat st;
 
-	pid = fork();
-
-	if (pid == 0)
-	{
-		if (execve(args[0], args, NULL) == -1)
-		{
-			perror("Error");
-			exit(1);
-		}
-	}
-	else if (pid < 0)
-	{
-		exit(1);
-	}
-	else
-	{
-		do {
-			waitpid(pid, &status, WUNTRACED);
-		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-	}
-	return (1);
+        while (1)
+        {
+                _printString("#cisfun$ ");
+                line = getline(&buffer, &len, stdin);
+                if (line != -1)
+                {
+                        arg = split(buffer);
+                        if (stat(arg[0], &st) == 0 && st.st_mode & S_IXUSR)
+                        {
+                                pid = fork();
+                                if (pid == 0)
+                                        execve(arg[0], arg, NULL);
+                                else
+                                        wait(NULL);
+                        }
+                        for (i = 0; arg[i]; i++)
+                                free(arg[i]);
+                        free(arg);
+                }
+                free(buffer);
+                buffer = 0;
+        }
+        return (0);
 }
