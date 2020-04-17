@@ -3,9 +3,11 @@
 .B simple_shell
 -a simple UNIX command interpreter.
 .SH SYNOPSIS
-.B #include "shell.h"
+.sp 
+#include "shell.h"
+
+$[Path] <options>
 .sp
-.B int hsh(void)
 .SH DESCRIPTION
 .B Overview
 .sp
@@ -51,13 +53,11 @@ duvanjm@duvan-asus:~/holberton/simple_shell$ echo "/bin/ls" | ./hsh
 #Cisfun$ LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h
 duvanjm@duvan-asus:~/holberton/simple_shell$
 .sp
-.SH FILES
 .SH BUGS
-.ip Expansions only work once per stdin read
+.sp 
+No known bugs.
+.sp
+.SH SEE ALSO
+Man or help sh.
 .SH AUTHOR
-Juan Felipe Rodriguez & Duvan Jaramillo 
-.SH SEE ALSO
-.SH SEE ALSO
-.I man or help sh
-.TP
-.BR sh (1)
+Duvan Jaramillo & Juan Felipe Rodriguez.
