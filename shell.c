@@ -35,33 +35,33 @@ char **split(char *buf)
  */
 int main(void)
 {
-	char *buffer, **arg;
-	int len, i;
-	int line;
-	pid_t pid;
-	struct stat st;
+        char *buffer, **arg;
+        unsigned long int len, i;
+        int line;
+        pid_t pid;
+        struct stat st;
 
-	while (1)
-	{
-		_printString("#cisfun$ ");
-		line = getline(&buffer, &len, stdin);
-		if (line != -1)
-		{
-			arg = split(buffer);
-			if (stat(arg[0], &st) == 0 && st.st_mode & S_IXUSR)
-			{
-				pid = fork();
-				if (pid == 0)
-					execve(arg[0], arg, NULL);
-				else
-					wait(NULL);
-			}
-			for (i = 0; arg[i]; i++)
-				free(arg[i]);
-			free(arg);
-		}
-		free(buffer);
-		buffer = 0;
-	}
-	return (0);
+        while (1)
+        {
+                _printString("#cisfun$ ");
+                line = getline(&buffer, &len, stdin);
+                if (line != -1)
+                {
+                        arg = split(buffer);
+                        if (stat(arg[0], &st) == 0 && st.st_mode & S_IXUSR)
+                        {
+                                pid = fork();
+                                if (pid == 0)
+                                        execve(arg[0], arg, NULL);
+                                else
+                                        wait(NULL);
+                        }
+                        for (i = 0; arg[i]; i++)
+                                free(arg[i]);
+                        free(arg);
+                }
+                free(buffer);
+                buffer = 0;
+        }
+        return (0);
 }

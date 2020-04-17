@@ -9,8 +9,6 @@
 #include <stdio.h>
 #include <string.h>
 
-extern char **environ;
-
 /* shell.c */
 char *shell_read(void);
 int shell_execute(void);
@@ -26,5 +24,4 @@ char *_strdup(char *str);
 /* _calloc.c */
 char *_memset(char *s, char b, unsigned int n);
 void *_calloc(unsigned int nmemb, unsigned int len);
-
 #endif
