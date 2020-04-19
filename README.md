@@ -19,18 +19,29 @@ simple_shell is designed to run in the `Ubuntu 14.04.5 LTS` linux environment an
 The simple shell is an application that reads lines from either a file or theterminal, interprets them, and executes them. In a similar manner to sh, however with more limited functionality. 
 
 # Examples
-
-`#duvanjm@duvan-asus:~/holberton/simple_shell$ ./hsh`
-`##Cisfun$ ls`
-`#Error: No such file or directory`
-`##Cisfun$ /bin/ls`
-`#LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h`
-`##Cisfun$ ^C`
-`#duvanjm@duvan-asus:~/holberton/simple_shell$`
-
-`#duvanjm@duvan-asus:~/holberton/simple_shell$ echo "/bin/ls" | ./hsh`
-`##Cisfun$ LICENSE  README.md  functions.c  hsh  man_1_simple_shell  shell.c  shell.h`
-`#duvanjm@duvan-asus:~/holberton/simple_shell$`
+```
+$ ./hsh 
+~> ls -l
+total 76
+-rw-rw-r-- 1 vagrant vagrant   217 Apr 19 18:27 AUTHORS
+-rw-rw-r-- 1 vagrant vagrant  2147 Apr 19 18:27 aux_functions.c
+-rw-rw-r-- 1 vagrant vagrant   737 Apr 19 18:27 built_ins.c
+-rw-rw-r-- 1 vagrant vagrant   764 Apr 19 18:27 env.c
+-rw-rw-r-- 1 vagrant vagrant  1766 Apr 19 18:27 _execve.c
+-rw-rw-r-- 1 vagrant vagrant   935 Apr 19 18:27 free.c
+-rwxrwxr-x 1 vagrant vagrant   331 Apr 19 18:27 generate_authors
+-rwxrwxr-x 1 vagrant vagrant 21421 Apr 19 18:39 hsh
+-rw-rw-r-- 1 vagrant vagrant  1069 Apr 19 18:27 LICENSE
+-rwxrwxr-x 1 vagrant vagrant  1939 Apr 19 18:27 man_1_simple_shell
+-rw-rw-r-- 1 vagrant vagrant   252 Apr 19 18:27 _putchar.c
+-rw-rw-r-- 1 vagrant vagrant  1559 Apr 19 18:27 README.md
+-rw-rw-r-- 1 vagrant vagrant  1125 Apr 19 18:39 shell_header.h
+-rw-rw-r-- 1 vagrant vagrant  1196 Apr 19 18:27 shell_main.c
+~> pwd
+/home/vagrant/simple_shell
+~> exit
+$ 
+```
 
 # Authors
 Juan Felipe Rodriguez & Duvan Jaramillo.
