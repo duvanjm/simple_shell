@@ -20,6 +20,56 @@ simple_shell is designed to run in the `Ubuntu 14.04.5 LTS` linux environment an
 
 The simple shell is an application that reads lines from either a file or theterminal, interprets them, and executes them. In a similar manner to sh, however with more limited functionality. 
 
+### Signals:
+
+While running in interactive mode, ignores the keyboard input `Ctrl+c`. Alternatively, an input of end-of-file `Ctrl+d` will exit the program.
+
+User hits `Ctrl+d` in the third line.
+```
+~> ./shellby
+~> ^C
+~> ^C
+```
+#### Env
+  * Usage: `env`
+  * Prints the current environment.
+
+Example:
+```
+$ ./hsh
+~> env
+NVM_DIR=/home/vagrant/.nvm
+...
+```
+#### $?
+`?` is substitued with the return value of the last program executed.
+
+Example:
+```
+$ echo "echo $?" | ./hsh
+0
+```
+
+#### $$
+The second `$` is substitued with the current process ID.
+
+Example:
+```
+$ echo "echo $$" | ./hsh
+6494
+```
+
+#### Exit
+  * Usage: `exit [STATUS]`
+  * Exits the shell.
+  * The `STATUS` argument is the integer used to exit the shell.
+  
+Example:
+```
+$ ./hsh
+~> exit
+```
+
 # Examples
 ```
 $ ./hsh 
